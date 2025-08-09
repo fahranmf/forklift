@@ -89,6 +89,31 @@ export default function Login() {
                   <span className="ml-4">Sign Up with Google</span>
                 </button>
               </div>
+
+              <div className="flex flex-col items-center">
+                <button
+                  className="cursor-pointer w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline  mt-5"
+                  onClick={handleMicrosoftLogin}
+                  type="button"
+                >
+                  <div className="bg-white p-2 rounded-full">
+                    <svg
+                      className="w-4 h-4"
+                      viewBox="0 0 16 16"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path fill="#F35325" d="M1 1h6.5v6.5H1V1z" />
+                      <path fill="#81BC06" d="M8.5 1H15v6.5H8.5V1z" />
+                      <path fill="#05A6F0" d="M1 8.5h6.5V15H1V8.5z" />
+                      <path fill="#FFBA08" d="M8.5 8.5H15V15H8.5V8.5z" />
+                    </svg>
+                  </div>
+
+                  <span className="ml-4">Sign Up with Microsoft</span>
+                </button>
+              </div>
+              
               <div className="my-12 border-b text-center">
                 <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                   Or sign in with e-mail
