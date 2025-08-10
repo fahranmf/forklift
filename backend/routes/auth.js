@@ -1,14 +1,14 @@
-// routes/auth.js
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/authController');
-const { requireAuth } = require('../middleware/authMiddleware');
+// routes/auth.js 
+import { Router } from 'express';
+import { authController } from '../controllers/authController.js';
+import { requireAuth } from '../middleware/authMiddleware.js';
+
+const router = Router();
 
 // Local register/login & logout
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.post('/logout', authController.logout) 
-
+router.post('/logout', authController.logout);
 
 // SSO Google
 router.get('/google', authController.googleRedirect);
@@ -21,4 +21,4 @@ router.get('/microsoft/callback', authController.microsoftCallback);
 // Profil user yang sedang login (ambil dari JWT/cookie)
 router.get('/me', requireAuth, authController.getMe);
 
-module.exports = router;
+export default router; 

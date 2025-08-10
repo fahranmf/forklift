@@ -1,27 +1,24 @@
-const dotenv = require('dotenv');
-const express = require('express')
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
+// index.js (ESM)
+import 'dotenv/config'; // ini langsung load .env tanpa const dotenv
 
-const app = express()
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-dotenv.config();
+const app = express();
 
-app.use(express.json())
-app.use(cookieParser())
-
-// penting: credentials + origin FE
 app.use(cors({
-  origin: process.env.APP_URL || 'http://localhost:5173',
+  origin: process.env.APP_URL, // atau array kalau multi-origin
   credentials: true,
-}))
+}));
+app.use(express.json());
+app.use(cookieParser());
 
-// routes
-const authRoutes = require('./routes/auth')
-app.use('/auth', authRoutes)
+// route import (ESM)
+import authRoutes from './routes/auth.js';
+app.use('/auth', authRoutes);
 
-// health
-app.get('/health', (_, res) => res.json({ ok: true }))
-
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`API running on ${PORT}`))
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
