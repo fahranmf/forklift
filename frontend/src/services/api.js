@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API = axios.create({
   baseURL: 'http://localhost:5000',
-  withCredentials: true, // 🔑 ini penting supaya cookie terkirim
+  withCredentials: true,
 });
 
 API.interceptors.response.use(

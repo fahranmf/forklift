@@ -10,8 +10,14 @@ import './css/style.css';
 import './charts/ChartjsConfig';
 
 // Import pages
-import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
 import Login from './pages/Login';
+import DriverManagement from './pages/DriverManagement';
+import Vehicle from './pages/asset/ByVehicle';
+import Fleet from './pages/asset/ByFleet';
+import Map from './pages/asset/Map';
+
+
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
@@ -32,7 +38,11 @@ function App() {
 
       {/* Semua route di dalam ProtectedRoute butuh login */}
       <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/driver-management" element={<DriverManagement />} />
+        <Route path="/asset/vehicle" element={<Vehicle />} />
+        <Route path="/asset/fleet" element={<Fleet />} />
+        <Route path="/asset/map" element={<Map />} />
       </Route>
     </Routes>
     </>
