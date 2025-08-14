@@ -24,20 +24,22 @@ function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex max-h-dvh ">
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-        <main className="grow">
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-            {/* Dashboard actions */}
+      <div className="relative flex flex-col flex-1 min-h-0">
+        {/* Site header  */}
+        <Header
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen} 
+        />
+        <main className="flex-1 min-h-0">
+          {/* <- sisa tinggi layar */}
+          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto h-full">
+            {/* Actions */}
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              {/* Left: Title */}
               <div className="mb-4 sm:mb-0">
                 <h1 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">
                   Home
@@ -59,12 +61,23 @@ function Home() {
               </div>
             </div>
 
-            {/* Cards */}
-            <div className="grid grid-cols-12 gap-6">
-              <DataDashboard />
-              <DashboardCard08/>
-              <DashboardCard08/>
+            {/* Grid isi layar */}
+            <div className="grid h-[calc(100%-50px)] grid-cols-1 grid-rows-[auto,1fr] sm:grid-cols-2 sm:grid-rows-[auto,1fr] gap-4 min-h-0">
+              <div className="sm:col-span-2 min-h-0">
+                <DataDashboard />
+              </div>
+
+              {/* 2) Card 01 */}
+              <div className="min-h-0 sm:row-start-2">
+                <DashboardCard01 />
+              </div>
+
+              {/* 3) Card 03 */}
+              <div className="min-h-0 sm:row-start-2">
+                <DashboardCard01 />
+              </div>
             </div>
+            {/* Grid */}
           </div>
         </main>
       </div>

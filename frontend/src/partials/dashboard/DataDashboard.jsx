@@ -119,35 +119,37 @@ function DataDashboard() {
   ];
 
   return (
-    <div className="flex flex-col col-span-full bg-white dark:bg-gray-800 shadow-xs rounded-xl w-full">
-      <div className="px-5 pt-5">
-        <header className="flex justify-center items-center mb-4">
+    <div className="flex flex-col col-span-full bg-white dark:bg-gray-800 shadow-xs rounded-xl h-full w-full">
+      <div className="px-5 pt-10 h-full flex flex-col min-h-0">
+        <header className="flex justify-center items-center">
           <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
             Assets
           </h2>
         </header>
 
-        {/* Row status: kesamping */}
-        <div className="flex items-start justify-between gap-6 overflow-x-auto p-10">
-          {statuses.map((s) => (
-            <div key={s.label} className="flex items-center gap-3 shrink-0">
-              {s.icon}
-              <div>
-                <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 leading-none">
-                  {s.count}
-                </div>
-                <div className="text-sm font-semibold text-gray-500 dark:text-gray-100 uppercase">
-                  {s.label}
+        {/* area sisa tinggi kartu */}
+        <div className="flex-1 min-h-0 flex p-10 pt-5">
+          <div className="my-auto w-full flex items-center justify-between  gap-6 overflow-x-auto">
+            {statuses.map((s) => (
+              <div key={s.label} className="flex items-center gap-3 shrink-0">
+                {s.icon}
+                <div>
+                  <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 leading-none">
+                    {s.count}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-500 dark:text-gray-100 uppercase">
+                    {s.label}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-              {/* Label 
+          {/* Label 
 
         <br />
-        <div className="flex items-center justify-between gap-6 overflow-x-auto p-10">
+        <div className="flex-1 min-h-0 flex p-10 pt-5">
+          <div className="my-auto w-full flex items-center justify-between  gap-6 overflow-x-auto">
           {statuses.map(({ label, icon, count }) => (
             <div
               key={label}
@@ -169,6 +171,7 @@ function DataDashboard() {
         
 
         {/* /Row status */}
+        </div>
       </div>
     </div>
   );
