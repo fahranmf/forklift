@@ -99,7 +99,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
               height={32}
               alt="Logo"
             />
-            <span className="ml-3 lg:text-base md:text-sm font-semibold text-gray-800 dark:text-gray-100">
+            <span className="ml-3 mr-3 lg:text-base md:text-sm font-semibold text-gray-800 dark:text-gray-100">
               Forklift <br />
               Monitoring System
             </span>
