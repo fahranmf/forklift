@@ -80,7 +80,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex lg:flex! flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-[100dvh] overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:w-64! shrink-0 bg-white dark:bg-gray-800 p-4 transition-all duration-200 ease-in-out ${
+        className={`flex lg:flex! flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 min-h-[100dvh] h-full overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:w-64! shrink-0 bg-white dark:bg-gray-800 p-4 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-64"
         } ${
           variant === "v2"
@@ -89,39 +89,59 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between mb-10 pr-3 sm:px-2">
-          {/* Logo */}
-          <NavLink end to="/" className="flex items-center justify-center">
-            <img
-              className="w-10 h-10 rounded-full bg-white"
-              src={LogoImg}
-              width={32}
-              height={32}
-              alt="Logo"
-            />
-            <span className="ml-3 mr-3 lg:text-base md:text-sm font-semibold text-gray-800 dark:text-gray-100">
-              Forklift <br />
-              Monitoring System
-            </span>
-          </NavLink>
-          {/* Close button */}
-          <button
-            ref={trigger}
-            className="lg:hidden text-gray-500 hover:text-gray-400"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            aria-controls="sidebar"
-            aria-expanded={sidebarOpen}
-          >
-            <span className="sr-only">Close sidebar</span>
-            <svg
-              className="w-6 h-6 fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
-            </svg>
-          </button>
-        </div>
+        <div
+  className="
+    flex items-center mb-10 pr-3 sm:px-2
+    justify-between
+    /* desktop: center saat collapsed, normal saat expanded */
+    lg:justify-center
+    lg:sidebar-expanded:justify-between
+  "
+>
+  {/* Logo + Text */}
+  <NavLink end to="/" className="inline-flex items-center justify-center gap-3">
+    <img
+      className="w-10 h-10 rounded-full bg-white"
+      src={LogoImg}
+      width={32}
+      height={32}
+      alt="Logo"
+    />
+
+    {/* Teks: hidden saat collapsed (>=lg), muncul saat expanded */}
+    <span
+      className="
+        font-semibold text-gray-800 dark:text-gray-100
+        transition-all duration-200
+
+        /* default: tampil di mobile */
+        /* desktop collapsed: hide */
+        lg:hidden
+        /* desktop expanded: show */
+        lg:sidebar-expanded:inline
+        /* optional: selalu tampil di 2xl */
+        2xl:inline
+      "
+    >
+      Forklift <br /> Monitoring System
+    </span>
+  </NavLink>
+
+  {/* Close button: cuma buat mobile */}
+  <button
+    ref={trigger}
+    className="lg:hidden text-gray-500 hover:text-gray-400"
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+    aria-controls="sidebar"
+    aria-expanded={sidebarOpen}
+  >
+    <span className="sr-only">Close sidebar</span>
+    <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+      <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
+    </svg>
+  </button>
+</div>
+
 
         {/* Links */}
         <div className="space-y-8">
