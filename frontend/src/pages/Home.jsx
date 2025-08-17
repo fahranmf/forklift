@@ -62,7 +62,7 @@ function Home() {
             </div>
 
             {/* Grid isi layar */}
-            <div className="grid h-[calc(100%-50px)] grid-cols-1 grid-rows-[auto,1fr] sm:grid-cols-2 sm:grid-rows-[auto,1fr] gap-4 min-h-0">
+            <div className="grid h-[calc(100%-70px)] grid-cols-1 grid-rows-[auto,1fr] sm:grid-cols-2 sm:grid-rows-[auto,1fr] gap-4 min-h-0">
               <div className="sm:col-span-2 min-h-0">
                 <DataDashboard />
               </div>
