@@ -1,8 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import { chartAreaGradient } from '../../charts/ChartjsConfig';
-import EditMenu from '../../components/DropdownEditMenu';
 
 // Import utilities
 import { adjustColorOpacity, getCssVariable } from '../../utils/Utils';
@@ -91,12 +88,10 @@ return (
 
       {/* Area chart fleksibel: isi sisa tinggi card */}
       <div className="flex-1 min-h-0"> 
-        {/* Biarkan chart mengikuti container, jangan hardcode width/height */}
         <LineChart
           data={chartData}
           options={{ responsive: true, maintainAspectRatio: false }}
           className="w-full h-full"
-          /* kalau komponen LineChart belum support className/style, bungkus canvas-nya di div `relative h-full` di dalamnya */
         />
       </div>
     </div>
