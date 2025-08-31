@@ -7,7 +7,7 @@ import EditMenu from '../../components/DropdownEditMenu';
 // Import utilities
 import { adjustColorOpacity, getCssVariable } from '../../utils/Utils';
 
-function DashboardCard01({ className = "" }) {
+function BatteryMonitorCard({ className = "" }) {
 
   const chartData = {
     labels: [
@@ -103,4 +103,4 @@ return (
   );
 }
 
-export default DashboardCard01;
+export default BatteryMonitorCard;

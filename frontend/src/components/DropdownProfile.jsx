@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Transition from "../utils/Transition";
-import API from "../services/api"; // pastikan path sesuai
+import API from "../services/api";
 import { useAuth } from "../contexts/AuthContext";
 
-import UserAvatar from "../images/user-avatar-32.png";
 
 function DropdownProfile({ align }) {
   const { me, loading } = useAuth();

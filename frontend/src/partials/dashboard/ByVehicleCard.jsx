@@ -1,15 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Table from "../../charts/Table";
 import Pagination from "../../components/Pagination";
-
-function SourceCell({ icon, label }) {
-  return (
-    <div className="flex items-center">
-      {icon}
-      <div className="text-gray-800 dark:text-gray-100">{label}</div>
-    </div>
-  );
-}
+import { NavLink } from "react-router-dom";
 
 // --- helper kecil buat badge status ---
 function StatusBadge({ status }) {
@@ -45,7 +37,7 @@ function StatusBadge({ status }) {
   );
 }
 
-export default function DashboardCard07({ className = "" }) {
+export default function ByVehicleCard({ className = "" }) {
   const dtf = new Intl.DateTimeFormat("id-ID", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -56,8 +48,22 @@ export default function DashboardCard07({ className = "" }) {
 
   // === KOLOM TABEL ===
   const columns = [
-    { key: "name", header: "Name", align: "left" },
-    { key: "model", header: "Model", align: "left" },
+    { key: "name", 
+      header: "Name", 
+      align: "left" ,
+      render: (r) => (
+      <NavLink
+        to={`/asset/vehicles/${encodeURIComponent(r.id)}`}
+        className="hover:underline hover:text-violet-500"
+      >
+        {r.name}
+      </NavLink>
+      ),
+    },
+    { key: "model", 
+      header: "Model", 
+      align: "left",
+   },
     {
       key: "status",
       header: "Status",
@@ -375,7 +381,6 @@ export default function DashboardCard07({ className = "" }) {
       address: "Kawasan Industri Benua Indah, Samarinda",
     },
   ];
-
 
   const allRows = baseRows;
 

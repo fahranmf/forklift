@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Sidebar from "../../partials/Sidebar";
 import Header from "../../partials/Header";
-import DashboardCard07 from "../../partials/dashboard/DashboardCard07";
+import ByVehicleCard from "../../partials/dashboard/ByVehicleCard";
 
 function ByVehicle() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,7 +27,7 @@ function ByVehicle() {
 
             {/* Card fill sisa tinggi */}
             <div className="flex-1 min-h-0">
-              <DashboardCard07 className="h-full " />
+              <ByVehicleCard className="h-full " />
             </div>
           </div>
         </main>

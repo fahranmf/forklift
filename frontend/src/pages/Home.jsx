@@ -2,23 +2,8 @@ import React, { useState } from "react";
 
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
-import FilterButton from "../components/DropdownFilter";
-import Datepicker from "../components/Datepicker";
-import DashboardCard01 from "../partials/dashboard/DashboardCard01";
+import BatteryMonitorCard from "../partials/dashboard/BatteryMonitorCard";
 import DataDashboard from "../partials/dashboard/DataDashboard";
-import DashboardCard02 from "../partials/dashboard/DashboardCard02";
-import DashboardCard03 from "../partials/dashboard/DashboardCard03";
-import DashboardCard04 from "../partials/dashboard/DashboardCard04";
-import DashboardCard05 from "../partials/dashboard/DashboardCard05";
-import DashboardCard06 from "../partials/dashboard/DashboardCard06";
-import DashboardCard07 from "../partials/dashboard/DashboardCard07";
-import DashboardCard08 from "../partials/dashboard/DashboardCard08";
-import DashboardCard09 from "../partials/dashboard/DashboardCard09";
-import DashboardCard10 from "../partials/dashboard/DashboardCard10";
-import DashboardCard11 from "../partials/dashboard/DashboardCard11";
-import DashboardCard12 from "../partials/dashboard/DashboardCard12";
-import DashboardCard13 from "../partials/dashboard/DashboardCard13";
-import Banner from "../partials/Banner";
 
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -69,12 +54,12 @@ function Home() {
 
               {/* 2) Card 01 */}
               <div className="min-h-0 sm:row-start-2">
-                <DashboardCard01 />
+                <BatteryMonitorCard />
               </div>
 
               {/* 3) Card 03 */}
               <div className="min-h-0 sm:row-start-2">
-                <DashboardCard01 />
+                <BatteryMonitorCard />
               </div>
             </div>
             {/* Grid */}
