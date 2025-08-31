@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from "../services/api";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -53,11 +54,14 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-      <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex justify-center">
+      <div className="max-w-screen-xl m-0 sm:m-10 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 flex flex-col justify-center">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl xl:text-3xl font-extrabold">Sign In</h1>
+            <div className="flex items-center space-x-3">
+              <h1 className="text-2xl xl:text-3xl font-extrabold">Sign In</h1>
+              <ThemeToggle />
+            </div>
 
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
@@ -113,9 +117,9 @@ export default function Login() {
                   <span className="ml-4">Sign Up with Microsoft</span>
                 </button>
               </div>
-              
-              <div className="my-12 border-b text-center">
-                <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+
+              <div className="my-12 border-b border-gray-300 dark:border-gray-600 text-center">
+                <div className="leading-none px-2 inline-block text-sm text-gray-600 dark:text-gray-300 tracking-wide font-medium bg-white dark:bg-gray-800 transform translate-y-1/2">
                   Or sign in with e-mail
                 </div>
               </div>
@@ -124,7 +128,7 @@ export default function Login() {
                 {msg && <p className="text-red-500 text-center mb-4">{msg}</p>}
 
                 <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-900 mt-5"
                   type="email"
                   placeholder="Email"
                   value={email}
@@ -133,7 +137,7 @@ export default function Login() {
                 />
 
                 <input
-                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 focus:bg-white dark:focus:bg-gray-900 mt-5"
                   type="password"
                   placeholder="Password"
                   value={password}
