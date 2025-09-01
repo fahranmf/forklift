@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 const COOKIE_BASE = {
   httpOnly: true,
-  sameSite: "lax",
+  sameSite: process.env.COOKIE_SAMESITE || "lax",
   secure: process.env.COOKIE_SECURE === "true",
 };
 const makeRand = (len = 16) => randomBytes(len).toString("hex");
