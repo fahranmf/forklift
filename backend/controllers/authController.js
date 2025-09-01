@@ -1,4 +1,4 @@
-// controllers/authController.js 
+// controllers/authController.js
 import bcrypt from "bcryptjs";
 import { randomBytes } from "crypto";
 import { createRemoteJWKSet, jwtVerify } from "jose";
@@ -66,9 +66,7 @@ export const authController = {
 
       // sarankan cookie httpOnly
       res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.COOKIE_SECURE === "true",
-        sameSite: "lax",
+        ...COOKIE_BASE,
         maxAge: 24 * 60 * 60 * 1000,
       });
 
@@ -92,9 +90,7 @@ export const authController = {
     try {
       // hapus cookie token
       res.clearCookie("token", {
-        httpOnly: true,
-        secure: process.env.COOKIE_SECURE === "true",
-        sameSite: "lax",
+        ...COOKIE_BASE,
       });
       return res.json({ msg: "Logout berhasil" });
     } catch (e) {
