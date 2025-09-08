@@ -8,7 +8,7 @@ function ByVehicle() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-dvh"> {/* ganti dari h-100dvh */}
+    <div className="flex min-h-dvh max-h-dvh"> {/* ganti dari h-100dvh */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
