@@ -1,9 +1,11 @@
 // index.js (ESM)
-import 'dotenv/config'; // ini langsung load .env tanpa const dotenv
-
+import 'dotenv/config'; 
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import forkliftRoutes from './routes/forklifts.js';
+import authRoutes from './routes/auth.js';
+
 
 const app = express();
 
@@ -15,8 +17,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // route import (ESM)
-import authRoutes from './routes/auth.js';
 app.use('/auth', authRoutes);
+app.use("/api/forklifts", forkliftRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

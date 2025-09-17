@@ -24,7 +24,7 @@ export default function Table({
               <th
                 key={col.key}
                 className={
-                  "p-2 sticky top-0 z-10 bg-gray-200 dark:bg-gray-700/50"
+                  "p-2 sticky top-0 z-10 bg-gray-200 dark:bg-gray-700"
                 }
               >
                 <div className={`font-semibold ${col.align === "center" ? "text-center" : col.align === "right" ? "text-right" : "text-left"}`}>
