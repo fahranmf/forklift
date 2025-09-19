@@ -54,7 +54,7 @@ export default function ByVehicleCard({ className = "" }) {
       align: "left" ,
       render: (r) => (
       <NavLink
-        to={`/asset/vehicles/${encodeURIComponent(r.id)}`}
+        to={`/asset/vehicle/${encodeURIComponent(r.id)}`}
         className="hover:underline hover:text-violet-500"
       >
         {r.name}
