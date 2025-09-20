@@ -2,7 +2,8 @@ import React, { useMemo, useState, useEffect } from "react";
 import Table from "../../charts/Table";
 import Pagination from "../../components/Pagination";
 import { NavLink } from "react-router-dom";
-import { getForklifts } from "../../services/forklift"
+import { getForklifts } from "../../services/forklift";
+import Loading from "../../components/Loading";
 
 // --- helper kecil buat badge status ---
 function StatusBadge({ status }) {
@@ -49,22 +50,20 @@ export default function ByVehicleCard({ className = "" }) {
 
   // === KOLOM TABEL ===
   const columns = [
-    { key: "name", 
-      header: "Name", 
-      align: "left" ,
+    {
+      key: "name",
+      header: "Name",
+      align: "left",
       render: (r) => (
-      <NavLink
-        to={`/asset/vehicle/${encodeURIComponent(r.id)}`}
-        className="hover:underline hover:text-violet-500"
-      >
-        {r.name}
-      </NavLink>
+        <NavLink
+          to={`/asset/vehicle/${encodeURIComponent(r.id)}`}
+          className="hover:underline hover:text-violet-500"
+        >
+          {r.name}
+        </NavLink>
       ),
     },
-    { key: "model", 
-      header: "Model", 
-      align: "left",
-   },
+    { key: "model", header: "Model", align: "left" },
     {
       key: "status",
       header: "Status",
@@ -120,11 +119,22 @@ export default function ByVehicleCard({ className = "" }) {
   const [allRows, setAllRows] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getForklifts()
-      .then((data) => setAllRows(data))
-      .catch((err) => console.error("Error fetching forklifts:", err));
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getForklifts();
+        setAllRows(data);
+      } catch (err) {
+        console.error("Error fetching forklifts:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const totalItems = allRows.length;
@@ -137,6 +147,10 @@ export default function ByVehicleCard({ className = "" }) {
     const start = (page - 1) * pageSize;
     return allRows.slice(start, start + pageSize);
   }, [allRows, page, pageSize]);
+
+  if (loading) {
+  return <Loading />;
+}
 
   return (
     <div

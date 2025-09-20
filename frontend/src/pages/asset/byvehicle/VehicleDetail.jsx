@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getForkliftsDetail } from "../../../services/forklift";
 import Header from "../../../partials/HeaderAsset";
 import NavbarAsset from "./MenuAsset";
+import Loading from "../../../components/Loading";
 
 function VehicleDetail() {
   const { id } = useParams();
@@ -21,7 +22,9 @@ function VehicleDetail() {
     fetchData();
   }, [id]);
 
-  if (!vehicle) return <p>Loading...</p>;
+  if (!vehicle) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex min-h-dvh max-h-dvh">
@@ -30,8 +33,6 @@ function VehicleDetail() {
 
         <main className="grow min-h-0">
           <div className="h-full flex flex-col min-h-0 px-4 sm:px-6 lg:px-8 w-full max-w-9xl mx-auto">
-
-
             {/* Basic Info selalu tampil */}
             <div className="p-2">
               <h1 className="text-2xl text-gray-800 dark:text-gray-100 font-bold py-4">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from "../services/api";
 import ThemeToggle from "../components/ThemeToggle";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -52,6 +53,8 @@ export default function Login() {
   const handleMicrosoftLogin = () => {
     window.location.href = `${API.defaults.baseURL}/auth/microsoft`;
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="min-h-dvh bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex justify-center">
