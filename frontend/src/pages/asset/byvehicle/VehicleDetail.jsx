@@ -4,6 +4,7 @@ import { getForkliftsDetail } from "../../../services/forklift";
 import Header from "../../../partials/HeaderAsset";
 import NavbarAsset from "./MenuAsset";
 import Loading from "../../../components/Loading";
+import StatusBadge from "../../../components/StatusBadge";
 
 function VehicleDetail() {
   const { id } = useParams();
@@ -49,11 +50,8 @@ function VehicleDetail() {
                   </p>
                 </div>
                 <div className="col-start-1 row-start-2">
-                  <p>
-                    Status:{" "}
-                    <span className="text-gray-800 dark:text-gray-100">
-                      {vehicle.status}
-                    </span>
+                  <p className="flex items-center gap-2">
+                    Status: <StatusBadge status={vehicle.status} />
                   </p>
                 </div>
                 <div className="col-start-1 row-start-3">
