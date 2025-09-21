@@ -4,7 +4,7 @@ const dummyForklifts = [
     id: "FL-01",
     name: "FL-01",
     model: "Toyota 8FGCU25",
-    status: "Online",
+    status: "Working",
     serialNumber: "8FGCU25-7A3JX-001245",
     keyOnHours: 1523,
     lastOnlineISO: "2025-08-17T09:24:00+07:00",
@@ -26,7 +26,7 @@ const dummyForklifts = [
     id: "FL-03",
     name: "FL-03",
     model: "Hyster H50FT",
-    status: "Maintenance",
+    status: "Fault",
     serialNumber: "H50FT-HY-003421",
     keyOnHours: 3975,
     lastOnlineISO: "2025-08-17T07:10:00+07:00",
@@ -48,7 +48,7 @@ const dummyForklifts = [
     id: "FL-05",
     name: "FL-05",
     model: "CAT GP25N",
-    status: "Online",
+    status: "Working",
     serialNumber: "GP25N-CAT-015732",
     keyOnHours: 4512,
     lastOnlineISO: "2025-08-17T09:30:00+07:00",
@@ -59,7 +59,7 @@ const dummyForklifts = [
     id: "FL-06",
     name: "FL-06",
     model: "Nissan 1F2A25",
-    status: "Online",
+    status: "Working",
     serialNumber: "1F2A25-NS-004578",
     keyOnHours: 223,
     lastOnlineISO: "2025-08-17T09:28:00+07:00",
@@ -92,7 +92,7 @@ const dummyForklifts = [
     id: "FL-09",
     name: "FL-09",
     model: "Mitsubishi FB20N",
-    status: "Maintenance",
+    status: "Fault",
     serialNumber: "FB20N-MT-001889",
     keyOnHours: 3429,
     lastOnlineISO: "2025-08-17T05:55:00+07:00",
@@ -103,7 +103,7 @@ const dummyForklifts = [
     id: "FL-10",
     name: "FL-10",
     model: "Crown SC 4500",
-    status: "Online",
+    status: "Working",
     serialNumber: "SC4500-CR-002237",
     keyOnHours: 987,
     lastOnlineISO: "2025-08-17T09:26:00+07:00",
@@ -114,7 +114,7 @@ const dummyForklifts = [
     id: "FL-11",
     name: "FL-11",
     model: "Still RX 20-16",
-    status: "Online",
+    status: "Working",
     serialNumber: "RX20-16-ST-000732",
     keyOnHours: 1610,
     lastOnlineISO: "2025-08-17T09:18:00+07:00",
@@ -147,7 +147,7 @@ const dummyForklifts = [
     id: "FL-14",
     name: "FL-14",
     model: "Jungheinrich EFG216k",
-    status: "Maintenance",
+    status: "Fault",
     serialNumber: "EFG216K-JU-000611",
     keyOnHours: 3180,
     lastOnlineISO: "2025-08-16T10:15:00+07:00",
@@ -158,7 +158,7 @@ const dummyForklifts = [
     id: "FL-15",
     name: "FL-15",
     model: "Hangcha CPD20",
-    status: "Online",
+    status: "Working",
     serialNumber: "CPD20-HC-001144",
     keyOnHours: 745,
     lastOnlineISO: "2025-08-17T09:29:00+07:00",
@@ -169,7 +169,7 @@ const dummyForklifts = [
     id: "FL-16",
     name: "FL-16",
     model: "BYD ECB18",
-    status: "Online",
+    status: "Working",
     serialNumber: "ECB18-BYD-000833",
     keyOnHours: 156,
     lastOnlineISO: "2025-08-17T09:31:00+07:00",
@@ -202,7 +202,7 @@ const dummyForklifts = [
     id: "FL-19",
     name: "FL-19",
     model: "JAC CPD25",
-    status: "Maintenance",
+    status: "Fault",
     serialNumber: "CPD25-JAC-001902",
     keyOnHours: 2675,
     lastOnlineISO: "2025-08-16T14:48:00+07:00",
@@ -213,7 +213,7 @@ const dummyForklifts = [
     id: "FL-20",
     name: "FL-20",
     model: "Heli CPD18",
-    status: "Online",
+    status: "Working",
     serialNumber: "CPD18-HE-000522",
     keyOnHours: 612,
     lastOnlineISO: "2025-08-17T09:27:00+07:00",
@@ -224,7 +224,7 @@ const dummyForklifts = [
     id: "FL-21",
     name: "FL-21",
     model: "Toyota 8FBEK20",
-    status: "Online",
+    status: "Working",
     serialNumber: "8FBEK20-TY-004221",
     keyOnHours: 1340,
     lastOnlineISO: "2025-08-17T09:25:00+07:00",
@@ -257,7 +257,7 @@ const dummyForklifts = [
     id: "FL-24",
     name: "FL-24",
     model: "Yale ERC 040",
-    status: "Maintenance",
+    status: "Fault",
     serialNumber: "ERC040-YL-000944",
     keyOnHours: 2411,
     lastOnlineISO: "2025-08-16T09:04:00+07:00",
@@ -304,20 +304,61 @@ export const forkliftController = {
   },
 
   getForkliftsDetail: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const forklift = dummyForklifts.find((f) => f.id === id);
+
+      if (!forklift) {
+        return res.status(404).json({ message: "Forklift not found" });
+      }
+
+      res.json(forklift);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  },
+
+getForkliftsStatus: async (req, res) => {
   try {
-    const { id } = req.params;
+    const { status } = req.query;
 
-    const forklift = dummyForklifts.find(f => f.id === id);
+    if (status) {
+      // kalau ada query status, balikin list forklift yg sesuai
+      const forklifts = dummyForklifts.filter((f) => f.status === status);
 
-    if (!forklift) {
-      return res.status(404).json({ message: "Forklift not found" });
+      return res.json({
+        status,
+        count: forklifts.length,
+        forklifts,
+      });
     }
 
-    res.json(forklift);
+    // kalau ga ada query, balikin summary semua status
+    const counts = dummyForklifts.reduce(
+      (acc, f) => {
+        acc[f.status] = (acc[f.status] || 0) + 1;
+        return acc;
+      },
+      {
+        Working: 0,
+        Offline: 0,
+        Idle: 0,
+        Charging: 0,
+        Fault: 0,
+      }
+    );
 
+    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+
+    res.json({
+      status: counts,
+      total,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
   }
-},
+  },
 };

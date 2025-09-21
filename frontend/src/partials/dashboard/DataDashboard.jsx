@@ -1,8 +1,31 @@
+import { useEffect, useState } from "react";
+import { getForkliftsStatus } from "../../services/forklift";
+import Loading from "../../components/Loading";
+import { data } from "react-router-dom";
+
 function DataDashboard() {
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+      async function fetchData() {
+        try {
+          const data = await getForkliftsStatus();
+          setStatus(data);
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      fetchData();
+    }, []);
+  
+    if (!status) {
+      return <Loading />;
+    }
+
   const statuses = [
     {
       label: "Working",
-      count: 5,
+      count: status.status.Working,
       color: "#6FA76B",
       icon: (
         <svg
@@ -21,7 +44,7 @@ function DataDashboard() {
     },
     {
       label: "Charging",
-      count: 2,
+      count: status.status.Charging,
       color: "#FBBF24",
       icon: (
         <svg
@@ -40,7 +63,7 @@ function DataDashboard() {
     },
     {
       label: "Idle",
-      count: 0,
+      count: status.status.Idle,
       color: "#3B82F6",
       icon: (
         <svg
@@ -59,7 +82,7 @@ function DataDashboard() {
     },
     {
       label: "Fault",
-      count: 0,
+      count: status.status.Fault,
       color: "#EF4444",
       icon: (
         <svg
@@ -78,7 +101,7 @@ function DataDashboard() {
     },
     {
       label: "Offline",
-      count: 3,
+      count: status.status.Fault,
       color: "#9CA3AF",
       icon: (
         <svg

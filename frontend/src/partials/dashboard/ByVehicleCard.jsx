@@ -8,7 +8,7 @@ import Loading from "../../components/Loading";
 // --- helper kecil buat badge status ---
 function StatusBadge({ status }) {
   const colors = {
-    Online: {
+    Working: {
       dot: "bg-green-500",
       pill: "bg-green-100 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800",
     },
@@ -20,9 +20,13 @@ function StatusBadge({ status }) {
       dot: "bg-amber-500",
       pill: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800",
     },
-    Maintenance: {
+    Fault: {
       dot: "bg-sky-500",
       pill: "bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-900/30 dark:text-sky-300 dark:border-sky-800",
+    },
+    Charging: {
+      dot: "bg-orange-500",
+      pill: "bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800",
     },
   };
   const c = colors[status] || {
@@ -149,8 +153,8 @@ export default function ByVehicleCard({ className = "" }) {
   }, [allRows, page, pageSize]);
 
   if (loading) {
-  return <Loading />;
-}
+    return <Loading />;
+  }
 
   return (
     <div

@@ -10,3 +10,8 @@ export async function getForkliftsDetail(id) {
   const res = await API.get(`/api/forklifts/${id}`);
   return res.data;
 }
+
+export async function getForkliftsStatus() {
+  const res = await API.get(`/api/forklifts/status`);
+  return res.data;
+}
