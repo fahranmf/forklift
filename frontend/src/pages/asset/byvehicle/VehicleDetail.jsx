@@ -28,12 +28,12 @@ function VehicleDetail() {
   }
 
   return (
-    <div className="flex min-h-dvh max-h-dvh">
+    <div className="flex min-h-dvh max-h-dvh ">
       <div className="relative flex flex-col flex-1 min-h-0">
         <Header variant="v1" title={vehicle.name} path={"/asset/vehicle"} />
 
         <main className="grow min-h-0">
-          <div className="h-full flex flex-col min-h-0 px-4 sm:px-6 lg:px-8 w-full max-w-9xl mx-auto">
+          <div className="h-full flex flex-col min-h-0 px-4 sm:px-6 lg:px-8 w-dvw mx-auto">
             {/* Basic Info selalu tampil */}
             <div className="p-2">
               <h1 className="text-2xl text-gray-800 dark:text-gray-100 font-bold py-4">
@@ -100,7 +100,7 @@ function VehicleDetail() {
             {/* Navbar */}
             <NavbarAsset />
             {/* Nested route tampil di bawah Basic Info */}
-            <div className="p-2">
+            <div className="p-2 h-full">
               <Outlet context={{ vehicle }} />
             </div>
           </div>
