@@ -13,7 +13,7 @@ import Vehicle from "./pages/asset/ByVehicle";
 import Fleet from "./pages/asset/ByFleet";
 import Map from "./pages/asset/Map";
 import VehicleDetail from "./pages/asset/byvehicle/VehicleDetail";
-import { BasicData } from "./pages/asset/byvehicle/BasicData";
+import { BasicData } from "./pages/asset/byvehicle/basicdata/BasicData";
 import { Fault } from "./pages/asset/byvehicle/Fault";
 import ProtectedRoute from "./components/ProtectedRoute";
 
